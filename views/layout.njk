@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gym manager</title>
+    <link rel="stylesheet" href="/style.css">
+    {% block head %}{% endblock %}
+</head> 
+<body>
+    <header>
+        <div class="logo">
+            <a class="aimg" href="/"><img src="https://i.imgur.com/iCmED2B.jpg" alt="ERM"></a>
+            <a class="anome" href="/">Eduardo Rampon Meireles</a>
+        </div>
+        
+        <div class="links">
+            <a href="/">Instructors</a>
+            <a href="/members">Members</a>
+        </div>
+    </header>
+
+    {% block content %}{% endblock %}
+
+
+</body>
+</html>
