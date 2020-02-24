@@ -1,5 +1,4 @@
-
-
+const fs = require('fs')
 
 //post
 exports.post = function(req, res){
@@ -14,7 +13,11 @@ exports.post = function(req, res){
         }
     }
 
-    return res.send(req.body)
+    fs.writeFile("data.json", JSON.stringify(req.body), function(err){
+        if (err) throw err
+        return res.redirect("/instructors")
+    })
+
 }
 
 //update
