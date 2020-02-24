@@ -147,3 +147,41 @@ h3{
     font-size: 16px;
     color: rgba(0,0,0,0.85);
 }
+
+
+
+
+
+/*==========FORMULARIO========*/
+
+
+
+input {
+    width: 100%;
+    outline: none; /*Linha de quando clicamos no input, linha de seleção*/
+    color: #000000dd;
+    font-weight: 800;
+    font-size: 16px;
+}
+
+input[type="radio"]{
+    width: initial;
+    margin-right: 4px;
+}
+
+input::placeholder{
+    font-size: 16px;
+    font-weight: normal;
+    
+}
+
+button[type="submit"]{
+    padding: 8px 32px;
+    background-color:var(--selected-item-color-background);
+    border-radius: 4px;
+    margin-top: 32px;
+    width: 100%;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
