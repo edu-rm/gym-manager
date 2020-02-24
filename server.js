@@ -6,7 +6,7 @@ const server = express()
 
 
 
-
+server.use(express.urlencoded({extended: true}))// responsavel por fazer funcionar o req.body
 server.use(express.static('public')) /* Middlewere  */
 server.use(routes)
 
