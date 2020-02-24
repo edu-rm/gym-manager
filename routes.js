@@ -2,7 +2,7 @@ const express = require("express")
 const routes = express.Router() /* Variavel resposavel pelas rotas */
 
 routes.get('/', function(req, res){
-    return res.redirect("/instructors/index")
+    return res.render("instructors/index")
 })
 
 routes.get('/instructors', function(req, res){
