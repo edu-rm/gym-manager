@@ -24,7 +24,7 @@ header{
     box-sizing: border-box; /* Para repeitar o que eu coloquei de limite nele, nesse caso width 100%*/
 }
 .links{
-    font-size: 25px;
+    font-size: 24px;
 }
 
 .links a + a {
@@ -79,7 +79,7 @@ header{
     /* animation-duration: 200ms;
     animation-fill-mode: forwards;
     animation-timing-function: ease-in-out;
-    animation-play-state: running; Para js pused */
+    animation-play-state: running; Para js paused */
     /* animation-direction: reverse; */
     /* animation-iteration-count: 3; */
 
@@ -126,7 +126,7 @@ h3{
 .details .item div:nth-child(2){
     color: #000000dd;
     font-weight: 800;
-    font-size: 17px;
+    font-size: 18px;
 }
 
 .details h3{
