@@ -1,13 +1,3 @@
 {
-  "instructors": [
-    {
-      "id": 1,
-      "name": "xxxx",
-      "avatar_url": "http://google.com",
-      "birth": -62135596800000,
-      "gender": "M",
-      "services": "sds",
-      "created_at": 1582637712334
-    }
-  ]
+  "instructors": []
 }
