@@ -1,5 +1,6 @@
 const fs = require('fs')
 const data = require('./data.json')
+const { ageCalc, formatCreatedAt } = require('./utils')
 
 //Show
 
@@ -16,29 +17,13 @@ exports.show = function(req,res){
         return res.send('Instructor not Found')
     }
 
-    function ageCalc(timestamp){
-        const today = new Date()
-        const birth = new Date(timestamp)
-        
-        let age = today.getFullYear() - birth.getFullYear()
-
-        const month = today.getMonth() - birth.getMonth()
-        const day = today.getDate() - (birth.getDate()+1)
-        
-        if(month < 0 || (month == 0 && day<0 ))
-        {
-            age = age -1 
-        }
-
-        return age
-    }
-
     
+
     const instructor = {
         ...foundInstructor,
         age: ageCalc(foundInstructor.birth) ,
         services : foundInstructor.services.split(','),
-        created_at : ""
+        created_at : formatCreatedAt(foundInstructor.created_at)
     }
 
 

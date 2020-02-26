@@ -1,3 +1,22 @@
 {
-  "instructors": []
+  "instructors": [
+    {
+      "id": 1,
+      "name": "ERM",
+      "avatar_url": "http://google.com",
+      "birth": 1582675200000,
+      "gender": "M",
+      "services": "Musculação, Crossfit",
+      "created_at": 1582677795630
+    },
+    {
+      "id": 2,
+      "name": "Eduardo Rampon",
+      "avatar_url": "http://google.com",
+      "birth": 1267142400000,
+      "gender": "M",
+      "services": "natação",
+      "created_at": 1582680688678
+    }
+  ]
 }
