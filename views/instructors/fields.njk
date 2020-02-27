@@ -4,7 +4,8 @@
                     <input 
                         type="url"
                         name="avatar_url"   
-                        placeholder="http://"     
+                        placeholder="http://"
+                        value="{{ instructor.avatar_url }}"  
                     >
                 </div>
             </div>
@@ -15,6 +16,7 @@
                         type="text"
                         name="name"  
                         placeholder="Nome do Instrutor"    
+                        value="{{ instructor.name }}" 
                     >
                 </div>
             </div>
@@ -25,14 +27,31 @@
                     <input 
                         type="date" 
                         name="birth"
+                        value="{{ instructor.birth }}" 
                     >
                 </div>
             </div>
             <div class="item">
                 <div>Sexo</div>
                 <div>
-                    <span><input type="radio" name="gender" value="M" checked>Masculino</span>
-                    <span><input type="radio" name="gender" value="F">Feminino</span>
+                    <span>
+                        <input 
+                         type="radio" 
+                         name="gender" 
+                         value="M" 
+                         {% if instructor.gender == 'M' %}
+                         checked
+                         {% endif %}>Masculino
+                    </span>
+                    <span>
+                        <input 
+                         type="radio" 
+                         name="gender" 
+                         value="F"
+                         {% if instructor.gender == 'F' %}
+                         checked
+                         {% endif %}>Feminino
+                    </span>
                 </div>
             </div>
             <div class="item">
@@ -42,6 +61,7 @@
                         type="text" 
                         name="services"
                         placeholder="Separe os serviços prestados por vírgula"
+                        value="{{ instructor.services }}"
                     >
                 </div>
             </div>

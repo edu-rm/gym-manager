@@ -77,8 +77,16 @@ exports.post = function(req, res){
 //update
 
 exports.edit = function(req, res){
-    
-    return res.render('instructors/edit', {})
+    const {id} = req.params
+
+    const foundInstructor = data.instructors.find(function(i){
+        return i.id == id
+    })
+
+    if(!foundInstructor){
+        return res.send("Instructor not found")
+    }
+    return res.render('instructors/edit', {instructor: foundInstructor})
 }
 
 
