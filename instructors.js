@@ -1,6 +1,6 @@
 const fs = require('fs')
 const data = require('./data.json')
-const { ageCalc, formatCreatedAt } = require('./utils')
+const { ageCalc, formatCreatedAt, dateFormat } = require('./utils')
 
 //Show
 
@@ -86,7 +86,14 @@ exports.edit = function(req, res){
     if(!foundInstructor){
         return res.send("Instructor not found")
     }
-    return res.render('instructors/edit', {instructor: foundInstructor})
+    //Data yyyy-mm-dd
+    const instructor = {
+        ...foundInstructor,
+        birth : dateFormat(foundInstructor.birth)
+    }
+
+
+    return res.render('instructors/edit', {instructor})
 }
 
 
