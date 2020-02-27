@@ -76,6 +76,10 @@ exports.post = function(req, res){
 
 //update
 
+exports.edit = function(req, res){
+    
+    return res.render('instructors/edit', {})
+}
 
 
 //delete
