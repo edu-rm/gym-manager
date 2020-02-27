@@ -1,6 +1,8 @@
 const express = require("express")
 const nunjucks = require("nunjucks")
 const routes = require("./routes")
+const methodOverride = require('method-override')
+
 
 const server = express()
 
@@ -8,6 +10,7 @@ const server = express()
 
 server.use(express.urlencoded({extended: true}))// responsavel por fazer funcionar o req.body (POST)
 server.use(express.static('public')) /* Middlewere  */
+server.use(methodOverride('_method'))
 server.use(routes)
 
 

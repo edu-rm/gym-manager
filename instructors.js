@@ -98,6 +98,8 @@ exports.edit = function(req, res){
 
 exports.put = function(req, res){
     const { id } = req.body
+    
+
 
     const foundInstructor =data.instructors.find(function(instructor){
         return id == instructor.id
