@@ -78,6 +78,7 @@ exports.post = function(req, res){
 
 exports.edit = function(req, res){
     const {id} = req.params
+    console.log(id)
 
     const foundInstructor = data.instructors.find(function(i){
         return i.id == id
@@ -127,5 +128,7 @@ exports.put = function(req, res){
 
 //delete
 
-
+exports.delete = function(req, res){
+   
+}
 
