@@ -9,32 +9,7 @@ exports.index =  function(req, res){
     return res.render("members/index",{members : data.members})
 }
 
-exports.show = function(req,res){
-    //req params
-    const{ id } = req.params
-    
-    const foundMember = data.members.find(function(member){
-        return id == member.id
-    })
-    
-    
-    if (!foundMember){
-        return res.send('Member not Found')
-    }
-
-    
-
-    const member = {
-        ...foundMember,
-        age: ageCalc(foundMember.birth) ,
-    }
-
-
-
-    return res.render("members/show" , {member})
-
-}
-
+ 
 exports.create =  function(req, res){
     return res.render("members/create")
 }
@@ -87,6 +62,32 @@ exports.post = function(req, res){
 
 }
 
+exports.show = function(req,res){
+    //req params
+    const{ id } = req.params
+    
+    const foundMember = data.members.find(function(member){
+        return id == member.id
+    })
+    
+    
+    if (!foundMember){
+        return res.send('Member not Found')
+    }
+
+    
+
+    const member = {
+        ...foundMember,
+        age: ageCalc(foundMember.birth) ,
+    }
+
+
+
+    return res.render("members/show" , {member})
+
+}
+
 exports.edit = function(req, res){
     const {id} = req.params
     console.log(id)
@@ -119,7 +120,7 @@ exports.put = function(req, res){
             return true
         }
     })
-
+ 
     if(!foundMember) return res.send("Intructor not found")
     
     const member = {
