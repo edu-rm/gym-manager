@@ -28,5 +28,28 @@
       "created_at": 1582937647317
     }
   ],
-  "members":[]
+  "members": [
+    {
+      "id": 1,
+      "name": "m1",
+      "avatar_url": "https://images.unsplash.com/photo-1547919307-1ecb10702e6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80",
+      "birth": 1000425600000,
+      "gender": "M",
+      "email": "m1@gmail.com",
+      "blood": "B1",
+      "weight": "50",
+      "height": "180"
+    },
+    {
+      "id": 2,
+      "name": "m1",
+      "avatar_url": "https://images.unsplash.com/photo-1547919307-1ecb10702e6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80",
+      "birth": 1000425600000,
+      "gender": "M",
+      "email": "m1@gmail.com",
+      "blood": "AB0",
+      "weight": "50",
+      "height": "189"
+    }
+  ]
 }

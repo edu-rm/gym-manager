@@ -55,6 +55,7 @@ exports.post = function(req, res){
     
     //Treatment
     req.body.birth = Date.parse(req.body.birth)
+
     let maiorId=0
     data.members.forEach(function(i){
         if(i.id>maiorId){
@@ -62,10 +63,9 @@ exports.post = function(req, res){
         }
     })
     req.body.id = maiorId+1
-    req.body.created_at = Date.now();
 
     //Destructuring and organizing.
-    const { avatar_url, name, birth, gender, services, id, created_at} = req.body
+    const { avatar_url, name, birth, email, blood, weight, height, gender, id } = req.body
 
 
     data.members.push({
@@ -74,13 +74,15 @@ exports.post = function(req, res){
         avatar_url,
         birth,
         gender,
-        services,
-        created_at
+        email,
+        blood,
+        weight,
+        height
     })
 
     fs.writeFile("data.json", JSON.stringify(data, null, 2), function(err){
         if (err) throw err
-        return res.redirect("/members")
+        return res.redirect(`/members/${id}`)
     })
 
 }
