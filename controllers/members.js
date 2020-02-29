@@ -1,45 +1,44 @@
 const fs = require('fs')
-const data = require('./data.json')
-const { ageCalc, formatCreatedAt, dateFormat } = require('./utils')
+const data = require('../data.json')
+const { ageCalc, formatCreatedAt, dateFormat } = require('../utils')
 
-//Show
+
 exports.index =  function(req, res){
 
 
-    return res.render("instructors/index",{instructors : data.instructors})
+    return res.render("members/index",{members : data.members})
 }
-
 
 exports.show = function(req,res){
     //req params
     const{ id } = req.params
     
-    const foundInstructor = data.instructors.find(function(instructor){
-        return id == instructor.id
+    const foundMember = data.members.find(function(member){
+        return id == member.id
     })
     
     
-    if (!foundInstructor){
-        return res.send('Instructor not Found')
+    if (!foundMember){
+        return res.send('Member not Found')
     }
 
     
 
-    const instructor = {
-        ...foundInstructor,
-        age: ageCalc(foundInstructor.birth) ,
-        services : foundInstructor.services.split(','),
-        created_at : formatCreatedAt(foundInstructor.created_at)
+    const member = {
+        ...foundMember,
+        age: ageCalc(foundMember.birth) ,
     }
 
 
 
-    return res.render("instructors/show" , {instructor})
+    return res.render("members/show" , {member})
 
 }
 
+exports.create =  function(req, res){
+    return res.render("members/create")
+}
 
-//post
 exports.post = function(req, res){
     //req.query GET
     //req.body Post
@@ -57,7 +56,7 @@ exports.post = function(req, res){
     //Treatment
     req.body.birth = Date.parse(req.body.birth)
     let maiorId=0
-    data.instructors.forEach(function(i){
+    data.members.forEach(function(i){
         if(i.id>maiorId){
             maiorId = i.id
         }
@@ -69,7 +68,7 @@ exports.post = function(req, res){
     const { avatar_url, name, birth, gender, services, id, created_at} = req.body
 
 
-    data.instructors.push({
+    data.members.push({
         id,
         name,
         avatar_url,
@@ -81,32 +80,30 @@ exports.post = function(req, res){
 
     fs.writeFile("data.json", JSON.stringify(data, null, 2), function(err){
         if (err) throw err
-        return res.redirect("/instructors")
+        return res.redirect("/members")
     })
 
 }
-
-//update
 
 exports.edit = function(req, res){
     const {id} = req.params
     console.log(id)
 
-    const foundInstructor = data.instructors.find(function(i){
+    const foundMember = data.members.find(function(i){
         return i.id == id
     })
 
-    if(!foundInstructor){
-        return res.send("Instructor not found")
+    if(!foundMember){
+        return res.send("Member not found")
     }
     //Data yyyy-mm-dd
-    const instructor = {
-        ...foundInstructor,
-        birth : dateFormat(foundInstructor.birth)
+    const member = {
+        ...foundMember,
+        birth : dateFormat(foundMember.birth)
     }
 
 
-    return res.render('instructors/edit', {instructor})
+    return res.render('members/edit', {member})
 }
 
 exports.put = function(req, res){
@@ -114,48 +111,45 @@ exports.put = function(req, res){
     let index = 0
 
 
-    const foundInstructor =data.instructors.find(function(instructor, i){
-        if(id == instructor.id){
+    const foundMember =data.members.find(function(member, i){
+        if(id == member.id){
             index = i
             return true
         }
     })
 
-    if(!foundInstructor) return res.send("Intructor not found")
+    if(!foundMember) return res.send("Intructor not found")
     
-    const instructor = {
-        ...foundInstructor,
+    const member = {
+        ...foundMember,
         ...req.body,
         birth : Date.parse(req.body.birth),
         id: Number(req.body.id)
     }
 
 
-    data.instructors[index] = instructor
+    data.members[index] = member
 
     fs.writeFile("./data.json",JSON.stringify(data,null, 2),function(err){
         if(err) return res.send('Writer Error')
-        return res.redirect(`/instructors/${id}`)
+        return res.redirect(`/members/${id}`)
     })
 
 
 }
 
-
-//delete
-
 exports.delete = function(req, res){
    const { id } =req.body
-   const filteredInstructors = data.instructors.filter(function(i){
+   const filteredMembers = data.members.filter(function(i){
        return id != i.id
    })
 
-   data.instructors = filteredInstructors
+   data.members = filteredMembers
 
    fs.writeFile("./data.json", JSON.stringify(data, null,2), function(err){
        if(err) return res.send("File write error")
 
-       return res.redirect('/instructors')
+       return res.redirect('/members')
    })
 
 
