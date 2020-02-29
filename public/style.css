@@ -156,7 +156,7 @@ h3{
 
 
 
-input {
+input, select {
     width: 100%;
     outline: none; /*Linha de quando clicamos no input, linha de seleção*/
     color: #000000dd;
