@@ -1,0 +1,10 @@
+<script>
+    const formDelete = document.querySelector('#form-delete')
+    formDelete.addEventListener("submit", function(event){
+        const conf =confirm("Deseja mesmo deletar?")
+        if(!conf){
+            event.preventDefault()
+        }
+    })
+</script>
+
