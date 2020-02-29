@@ -8,6 +8,15 @@
       "gender": "M",
       "services": "Musculação, Crossfit, natação",
       "created_at": 1582934625938
+    },
+    {
+      "id": 2,
+      "name": "E2",
+      "avatar_url": "http://google.com",
+      "birth": 981936000000,
+      "gender": "M",
+      "services": "shjdfhsdhfjks",
+      "created_at": 1582935593662
     }
   ]
 }

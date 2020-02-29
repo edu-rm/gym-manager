@@ -3,6 +3,12 @@ const data = require('./data.json')
 const { ageCalc, formatCreatedAt, dateFormat } = require('./utils')
 
 //Show
+exports.index =  function(req, res){
+
+
+    return res.render("instructors/index",{instructors : data.instructors})
+}
+
 
 exports.show = function(req,res){
     //req params
