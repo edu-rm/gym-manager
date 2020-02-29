@@ -56,7 +56,13 @@ exports.post = function(req, res){
     
     //Treatment
     req.body.birth = Date.parse(req.body.birth)
-    req.body.id = Number(data.instructors.length + 1)
+    let maiorId=0
+    data.instructors.forEach(function(i){
+        if(i.id>maiorId){
+            maiorId = i.id
+        }
+    })
+    req.body.id = maiorId+1
     req.body.created_at = Date.now();
 
     //Destructuring and organizing.
@@ -105,11 +111,14 @@ exports.edit = function(req, res){
 
 exports.put = function(req, res){
     const { id } = req.body
-    
+    let index = 0
 
 
-    const foundInstructor =data.instructors.find(function(instructor){
-        return id == instructor.id
+    const foundInstructor =data.instructors.find(function(instructor, i){
+        if(id == instructor.id){
+            index = i
+            return true
+        }
     })
 
     if(!foundInstructor) return res.send("Intructor not found")
@@ -117,11 +126,12 @@ exports.put = function(req, res){
     const instructor = {
         ...foundInstructor,
         ...req.body,
-        birth : Date.parse(req.body.birth)
+        birth : Date.parse(req.body.birth),
+        id: Number(req.body.id)
     }
 
 
-    data.instructors[id-1] = instructor
+    data.instructors[index] = instructor
 
     fs.writeFile("./data.json",JSON.stringify(data,null, 2),function(err){
         if(err) return res.send('Writer Error')

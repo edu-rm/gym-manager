@@ -228,6 +228,46 @@ td, th{
     border-bottom: 1px solid var(--default-color);
 }
 
+th{
+    text-transform : uppercase;
+    color: #777;
+    font-size: 16px;
+}
+
 tbody tr:last-child td{
     border-bottom: none;
+}
+
+tbody tr td:first-child {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    align-items: center; 
+}
+
+tbody tr td:first-child span{
+    width: 48px;
+    height: 48px;
+    background-size: cover;
+    background-position:center;
+    border-radius: 50%;
+    box-shadow: 3px 1px 6px -4px black;
+    border: 2px solid white;
+}
+
+
+tbody tr td:last-child a{
+    background-color: var(--selected-item-color-background);
+    text-decoration : none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+.table-container thead tr th:last-child,
+tbody tr td:last-child{
+    text-align: center;
 }
