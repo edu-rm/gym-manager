@@ -1,6 +1,6 @@
 const fs = require('fs')
 const data = require('../data.json')
-const { ageCalc, formatCreatedAt, dateFormat } = require('../utils')
+const { dateFormat } = require('../utils')
 
 
 exports.index =  function(req, res){
@@ -79,7 +79,7 @@ exports.show = function(req,res){
 
     const member = {
         ...foundMember,
-        age: ageCalc(foundMember.birth) ,
+        birth: dateFormat(foundMember.birth).birthday ,
     }
 
 
@@ -90,7 +90,6 @@ exports.show = function(req,res){
 
 exports.edit = function(req, res){
     const {id} = req.params
-    console.log(id)
 
     const foundMember = data.members.find(function(i){
         return i.id == id
@@ -102,7 +101,7 @@ exports.edit = function(req, res){
     //Data yyyy-mm-dd
     const member = {
         ...foundMember,
-        birth : dateFormat(foundMember.birth)
+        birth : dateFormat(foundMember.birth).iso
     }
 
 
