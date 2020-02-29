@@ -255,7 +255,8 @@ tbody tr td:first-child span{
 }
 
 
-tbody tr td:last-child a{
+tbody tr td:last-child a, 
+.table-container > a{
     background-color: var(--selected-item-color-background);
     text-decoration : none;
     color: white;
@@ -266,8 +267,15 @@ tbody tr td:last-child a{
     font-weight: bold;
 }
 
+.table-container > a{
+    display: inline-block;
+    margin: 0 auto 16px 0;
+    width: 15%;
+    text-align: center;
+}
 
 .table-container thead tr th:last-child,
 tbody tr td:last-child{
     text-align: center;
 }
+
