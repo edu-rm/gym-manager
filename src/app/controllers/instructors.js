@@ -71,6 +71,8 @@ module.exports = {
     
     },
     delete(req, res){
-        return
-    },
+        Instructor.delete(Number(req.body.id), function(){
+            res.render("instructors/index")
+        })
+    }
 }

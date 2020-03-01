@@ -4,7 +4,7 @@ const { ageCalc, dateFormat } = require('../../lib/utils')
 module.exports ={
     all(callback){
         db.query(`SELECT * FROM instructors`, function(err, results){
-            if(err) res.send(err)
+            if(err) throw err
             callback(results.rows)
         })
 
@@ -33,14 +33,14 @@ module.exports ={
         
 
         db.query(query,values, function(err, results){
-            if(err) return res.send(err)
+            if(err) throw err
             callback(results.rows[0].id)
         })
     },
     find(id, callback){
         db.query(`SELECT * FROM instructors WHERE id = $1`, [id],
         function(err, results){
-            if(err) return res.send(err)
+            if(err) throw err
             callback(results.rows[0])
         })
 
@@ -65,10 +65,15 @@ module.exports ={
         ]
 
         db.query(query, values, function(err, results){
-            if (err) return res.send(err)
+            if (err) throw err
             callback()
         })
-
-
+    },
+    delete(id, callback){
+        query = `DELETE FROM instructors WHERE id = $1`
+        db.query(query, [id], function(err, result){
+            if (err) throw err
+            callback()
+        })
     }
 }
