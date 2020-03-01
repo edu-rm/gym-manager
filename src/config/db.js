@@ -4,7 +4,7 @@ const { Pool } = require('pg') //Se eu nao usar o tipo pull todas as vezes que e
 module.exports = new Pool({
     user : 'postgres',
     password : 'toor',
-    host: 'locahost',
+    host: 'localhost',
     port: 5432,
     database : 'gymmanager'
 })
