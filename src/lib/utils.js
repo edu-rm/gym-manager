@@ -15,20 +15,6 @@ module.exports = {
     
         return age
     },
-    formatCreatedAt(timestamp){
-        const joined = new Intl.DateTimeFormat('pt-BR').format(timestamp)
-        const format = joined.split('-')
-        let finalDate =""
-        for(let i = 0 ; i<format.length; i++){
-            if (i == (format.length-1)) {
-                finalDate = finalDate.concat(format[(format.length-1) - i])
-            }else{
-                finalDate = finalDate.concat(format[(format.length-1) - i]).concat('/')
-            }
-            
-        }
-        return finalDate
-    },
     dateFormat(timestamp){
         const date = new Date(timestamp)
         const year = date.getUTCFullYear()
@@ -41,7 +27,8 @@ module.exports = {
             day,
             month,
             year,
-            birthday : `${day}/${month}`
+            birthday : `${day}/${month}`,
+            formatCreatedAt : `${day}/${month}/${year}`
         }
 
 

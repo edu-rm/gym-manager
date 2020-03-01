@@ -35,7 +35,21 @@ module.exports = {
         
     },
     show(req, res){
-        return res.send('Working')
+        console.log(req.params.id)
+        Instructor.find(req.params.id, function(instructor){
+            if(!instructor) return res.send("Instructor not found 404")
+
+            instructor.age = ageCalc(instructor.birth)
+            instructor.services = instructor.services.split(',')
+            instructor.created_at = dateFormat(instructor.created_at).formatCreatedAt
+
+            return res.render("instructors/show", { instructor })
+
+
+
+        })
+
+
     },
     edit(req, res){
         return
