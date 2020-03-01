@@ -35,7 +35,6 @@ module.exports = {
         
     },
     show(req, res){
-        console.log(req.params.id)
         Instructor.find(req.params.id, function(instructor){
             if(!instructor) return res.send("Instructor not found 404")
 
@@ -44,15 +43,19 @@ module.exports = {
             instructor.created_at = dateFormat(instructor.created_at).formatCreatedAt
 
             return res.render("instructors/show", { instructor })
-
-
-
         })
 
 
     },
     edit(req, res){
-        return
+        Instructor.find(req.params.id, function(instructor){
+            if(!instructor) return res.send("Instructor not found 404")
+
+            instructor.birth = dateFormat(instructor.birth).iso
+            
+
+            return res.render("instructors/edit", { instructor })
+        })
     },
     put(req, res){
         const keys = Object.keys(req.body)
