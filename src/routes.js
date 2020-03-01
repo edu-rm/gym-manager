@@ -1,7 +1,7 @@
 const express = require("express")
 const routes = express.Router() /* Variavel resposavel pelas rotas */
-const instructors = require("./controllers/instructors")
-const members = require("./controllers/members")
+const instructors = require("./app/controllers/instructors")
+const members = require("./app/controllers/members")
 
 routes.get('/', instructors.index)
 routes.get('/instructors', instructors.index)

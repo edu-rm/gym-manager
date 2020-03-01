@@ -1,5 +1,5 @@
 module.exports = {
-    ageCalc : function(timestamp){
+    ageCalc(timestamp){
         const today = new Date()
         const birth = new Date(timestamp)
         
@@ -15,7 +15,7 @@ module.exports = {
     
         return age
     },
-    formatCreatedAt : function(timestamp){
+    formatCreatedAt(timestamp){
         const joined = new Intl.DateTimeFormat('pt-BR').format(timestamp)
         const format = joined.split('-')
         let finalDate =""
@@ -29,7 +29,7 @@ module.exports = {
         }
         return finalDate
     },
-    dateFormat : function(timestamp){
+    dateFormat(timestamp){
         const date = new Date(timestamp)
         const year = date.getUTCFullYear()
         const month = `0${date.getUTCMonth()+1}`.slice(-2)
