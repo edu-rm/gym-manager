@@ -1,9 +1,12 @@
 const { ageCalc, formatCreatedAt, dateFormat } = require('../../lib/utils')
-
+const Member = require('../models/Member')
 
 module.exports = {
     index(req, res){
-        return res.render("members/index")
+        Member.all(function(members){
+            return res.render("members/index", {members})
+        })
+        
     },
     create(req, res){
         return res.render("members/create")
@@ -26,7 +29,23 @@ module.exports = {
        return
     },
     show(req, res){
-        return
+        Member.find(req.params.id, function(value){
+            if(!value) return res.send("Member not found")
+            const { id, name, avatar_url, email, gender, birth, blood, weight, height} = value
+            const member = {
+                id, 
+                name,
+                avatar_url,
+                email,
+                gender,
+                birth:dateFormat(birth).birthday,
+                blood,
+                weight,
+                height
+            }
+
+            return res.render('members/show', { member })
+        })
     },
     edit(req, res){
         return

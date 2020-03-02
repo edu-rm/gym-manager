@@ -73,7 +73,7 @@ module.exports ={
         query = `DELETE FROM instructors WHERE id = $1`
         db.query(query, [id], function(err, result){
             if (err) throw err
-            callback()
+            return callback()
         })
     }
 }

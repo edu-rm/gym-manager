@@ -72,7 +72,7 @@ module.exports = {
     },
     delete(req, res){
         Instructor.delete(Number(req.body.id), function(){
-            res.render("instructors/index")
+            res.redirect("instructors")
         })
     }
 }
