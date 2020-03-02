@@ -48,7 +48,25 @@ module.exports = {
         })
     },
     edit(req, res){
-        return
+        Member.find(req.params.id, function(value){
+            if(!value) return res.send("Member not found")
+            const { id, avatar_url,name, email, birth, gender, blood, weight, height } = value
+            member = {
+                id,
+                avatar_url,
+                name,
+                email,
+                birth : dateFormat(birth).iso,
+                gender,
+                blood,
+                weight,
+                height
+            }
+
+            res.render('members/edit', { member }) 
+
+
+        })
     },
     put(req, res){
         const keys = Object.keys(req.body)
