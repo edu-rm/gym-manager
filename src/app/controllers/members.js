@@ -94,6 +94,8 @@ module.exports = {
 
     },
     delete(req, res){
-        return
+        Member.delete(req.body.id , function(){
+            res.redirect("members")    
+        })
     },
 }

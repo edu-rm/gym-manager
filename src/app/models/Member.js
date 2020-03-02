@@ -42,7 +42,16 @@ module.exports = {
         })
 
     },
-    delete(){
+    delete(id, callback){
+        const query = `
+            DELETE FROM members
+            WHERE
+             id = $1
+        `
+        db.query(query, [id], function(err, results){
+            if (err) throw err
+            callback()
 
+        })
     }
 }
