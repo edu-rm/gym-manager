@@ -70,13 +70,28 @@ module.exports = {
     },
     put(req, res){
         const keys = Object.keys(req.body)
-    
-        for (key of keys ){
-            if(req.body[key] == ''){
-                return res.send("Please, fill all the filds")
+        for (key of keys){
+            if(key ==''){
+                return res.send("Please, fill all the fields")
             }
         }
-        return
+        const { avatar_url, name, email, gender, birth, weight, height, blood,id } = req.body
+        member = [
+            avatar_url,
+            name, 
+            email,
+            gender,
+            dateFormat(birth).iso,
+            blood,
+            weight,
+            height,
+            id
+        ]
+        Member.update(member, function(){
+            return res.redirect(`members/${id}`)
+        })
+
+
     },
     delete(req, res){
         return
