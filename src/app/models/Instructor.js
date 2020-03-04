@@ -3,7 +3,12 @@ const { ageCalc, dateFormat } = require('../../lib/utils')
 
 module.exports ={
     all(callback){
-        db.query(`SELECT * FROM instructors`, function(err, results){
+        db.query(`SELECT i.*, count(m) AS total_students
+        FROM instructors i 
+        INNER JOIN members m
+        ON (i.id = m.instructor_id)
+        GROUP BY i.id`, 
+        function(err, results){
             if(err) throw err
             callback(results.rows)
         })

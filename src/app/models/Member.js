@@ -3,7 +3,7 @@ const { dateFormat } = require('../../lib/utils')
 
 module.exports = {
     all(callback){
-        const query = `SELECT * FROM MEMBERS`
+        const query = `SELECT * FROM members ORDER BY name ASC`
         db.query(query, function(err, results){
             if (err) throw err
 
