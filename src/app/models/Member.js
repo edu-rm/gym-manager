@@ -22,8 +22,9 @@ module.exports = {
                 gender,
                 blood,
                 weight, 
-                height
-            ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
+                height,
+                instructor_id
+            ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)
             RETURNING id
         `
 
@@ -51,8 +52,9 @@ module.exports = {
              birth = ($5),
              blood = ($6),
              weight = ($7),
-             height = ($8)
-            WHERE id  = ($9)
+             height = ($8),
+             instructor_id = ($9)
+            WHERE id  = ($10)
         `
         db.query(query, data, function(err, results){
             if(err) throw err
@@ -70,6 +72,25 @@ module.exports = {
             if (err) throw err
             callback()
 
+        })
+    },
+    instructorsSelectOptions(callback){
+        const query = `SELECT name,id FROM instructors`
+        db.query(query,function(err, results){
+            if (err) throw err
+            callback(results.rows)
+        })
+    },
+    memberShowInstructor(id, callback){
+        const query = `
+            SELECT i.name FROM instructors i 
+            LEFT JOIN members m
+            ON m.instructor_id = i.id
+            WHERE m.id = $1
+        `
+        db.query(query,[id],function(err, results){
+            if (err) throw err
+            callback(results.rows[0].name)
         })
     }
 }

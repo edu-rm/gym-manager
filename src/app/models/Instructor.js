@@ -5,11 +5,12 @@ module.exports ={
     all(callback){
         db.query(`SELECT i.*, count(m) AS total_students
         FROM instructors i 
-        INNER JOIN members m
+        LEFT JOIN members m
         ON (i.id = m.instructor_id)
         GROUP BY i.id`, 
         function(err, results){
             if(err) throw err
+            console.log(results.rows)
             callback(results.rows)
         })
 

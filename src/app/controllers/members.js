@@ -9,7 +9,9 @@ module.exports = {
         
     },
     create(req, res){
-        return res.render("members/create")
+        Member.instructorsSelectOptions(function(options){
+            return res.render("members/create", { instructorOptions: options})
+        })
     },
     post(req, res){
         //req.query GET
@@ -24,7 +26,8 @@ module.exports = {
                 return res.send("Please, fill all the filds")
             }
         }
-        const { avatar_url,name, email, birth, gender, blood, weight, height } = req.body
+        const { avatar_url,name, email, birth, gender, blood, weight, height,instructor } = req.body
+        console.log(req.body)
         const values = [
             avatar_url,
             name,
@@ -33,7 +36,9 @@ module.exports = {
             gender,
             blood,
             weight,
-            height
+            height,
+            instructor
+            
         ]
         
         Member.create(values, function(id){
@@ -46,19 +51,23 @@ module.exports = {
         Member.find(req.params.id, function(value){
             if(!value) return res.send("Member not found")
             const { id, name, avatar_url, email, gender, birth, blood, weight, height} = value
-            const member = {
-                id, 
-                name,
-                avatar_url,
-                email,
-                gender,
-                birth:dateFormat(birth).birthday,
-                blood,
-                weight,
-                height
-            }
-
-            return res.render('members/show', { member })
+            Member.memberShowInstructor(id, function(instructor_name){
+                const member = {
+                    id, 
+                    name,
+                    avatar_url,
+                    email,
+                    gender,
+                    birth:dateFormat(birth).birthday,
+                    blood,
+                    weight,
+                    height,
+                    instructor_name
+                }
+    
+                return res.render('members/show', { member })
+            })
+            
         })
     },
     edit(req, res){
@@ -76,8 +85,12 @@ module.exports = {
                 weight,
                 height
             }
+            Member.instructorsSelectOptions(function(instructorOptions){
+                
+                return res.render('members/edit', {member, instructorOptions})
+            })
 
-            res.render('members/edit', { member }) 
+            //res.render('members/edit', { member }) 
 
 
         })
@@ -89,7 +102,7 @@ module.exports = {
                 return res.send("Please, fill all the fields")
             }
         }
-        const { avatar_url, name, email, gender, birth, weight, height, blood,id } = req.body
+        const { avatar_url, name, email, gender, birth, weight, height, blood,id, instructor } = req.body
         member = [
             avatar_url,
             name, 
@@ -99,6 +112,7 @@ module.exports = {
             blood,
             weight,
             height,
+            instructor,
             id
         ]
         Member.update(member, function(){
