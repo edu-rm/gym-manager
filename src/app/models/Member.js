@@ -12,7 +12,25 @@ module.exports = {
         })
 
     },
-    create(){
+    create(data, callback){
+        const query = `
+            INSERT INTO members(
+                avatar_url,
+                name, 
+                email,
+                birth, 
+                gender,
+                blood,
+                weight, 
+                height
+            ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
+            RETURNING id
+        `
+
+        db.query(query, data, function(err, results){
+            if (err) throw err
+            callback(results.rows[0].id)
+        })
 
     },
     find(id, callback){

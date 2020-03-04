@@ -16,7 +16,7 @@ module.exports = {
         //req.body Post
     
         //Validation
-    
+        
         const keys = Object.keys(req.body)
     
         for (key of keys ){
@@ -24,9 +24,23 @@ module.exports = {
                 return res.send("Please, fill all the filds")
             }
         }
+        const { avatar_url,name, email, birth, gender, blood, weight, height } = req.body
+        const values = [
+            avatar_url,
+            name,
+            email,
+            dateFormat(birth).iso,
+            gender,
+            blood,
+            weight,
+            height
+        ]
         
-        //Treatment
-       return
+        Member.create(values, function(id){
+            return res.redirect(`members/${id}`)
+        })
+        
+
     },
     show(req, res){
         Member.find(req.params.id, function(value){
