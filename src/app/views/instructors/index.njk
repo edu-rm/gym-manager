@@ -4,7 +4,19 @@
 
 {% block content %}
     <div class="card table-container">
-        <a href="/instructors/create">Novo +</a>
+
+        <div class="header">
+            <a href="/instructors/create" class="button">Novo +</a>
+            <form action="/instructors" action="GET">
+                <input 
+                    type="text"
+                    name="filter"
+                    placeholder="Filtrar por nome"
+                >
+                <button type="submit">Filtrar</button>
+            </form>
+        </div>
+
         <table width="100%">
             <thead>
                 <tr>

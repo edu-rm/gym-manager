@@ -280,3 +280,33 @@ tbody tr td:last-child{
     text-align: center;
 }
 
+
+/*==================FILTERS============*/
+
+.table-container .header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.table-container .header a{ 
+    margin: 0;
+    width: 120px;
+}
+
+.table-container .header form { 
+    display: grid;
+    grid-template-columns: 1fr 120px;
+    align-items: center;
+    grid-gap: 8px;
+}
+
+.header form button{
+    margin:0;
+}
+.header form input{
+    border: 1px solid #eee;
+    padding: 4px 8px;
+    box-sizing: border-box; /* Ele passa dos limites impostos pelo grid para evitar isso usa-se o border box para ele respeitar o limite imposto*/
+}
