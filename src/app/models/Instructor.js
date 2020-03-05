@@ -87,6 +87,7 @@ module.exports ={
         LEFT JOIN members m
         ON (i.id = m.instructor_id)
         WHERE i.name ILIKE '%${filter}%'
+            OR i.services ILIKE '%${filter}%'
         GROUP BY i.id`, 
         function(err, results){
             if(err) throw err
