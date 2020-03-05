@@ -10,7 +10,6 @@ module.exports ={
         GROUP BY i.id`, 
         function(err, results){
             if(err) throw err
-            console.log(results.rows)
             callback(results.rows)
         })
 
@@ -80,6 +79,18 @@ module.exports ={
         db.query(query, [id], function(err, result){
             if (err) throw err
             return callback()
+        })
+    },
+    findBy(filter, callback){
+        db.query(`SELECT i.*, count(m) AS total_students
+        FROM instructors i 
+        LEFT JOIN members m
+        ON (i.id = m.instructor_id)
+        WHERE i.name ILIKE '%${filter}%'
+        GROUP BY i.id`, 
+        function(err, results){
+            if(err) throw err
+            callback(results.rows)
         })
     }
 }
