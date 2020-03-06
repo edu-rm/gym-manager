@@ -8,8 +8,16 @@ module.exports = {
         page = page || 1
         limit = limit || 2
         let offset = limit * (page - 1)
-
-        
+        const params = {
+            filter,
+            page,
+            limit,
+            offset,
+            callback(instructors){
+                return res.render("instructors/index", {instructors, filter})
+            }
+        }
+        Instructor.paginate(params)
 
         // if(filter) {
         //     Instructor.findBy(filter, function(instructors){
