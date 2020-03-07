@@ -92,5 +92,25 @@ module.exports = {
             if (err) throw err
             callback(results.rows[0].name)
         })
+    },
+    paginate(params){
+        const { filter, limit , offset, callback } = params 
+        let query = `
+            SELECT *,(
+                SELECT count(*) FROM members
+            ) AS total FROM members 
+        `
+
+        if(params.filter){
+            query = `${query} WHERE name ILIKE '${filter}'`
+        }
+        query = `${query} LIMIT $1 OFFSET $2`
+
+        db.query(query, [limit, offset], function(err, results){
+            if (err) throw err
+            callback(results.rows)
+        })
+
+
     }
 }
