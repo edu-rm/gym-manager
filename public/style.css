@@ -311,8 +311,39 @@ tbody tr td:last-child{
     box-sizing: border-box; /* Ele passa dos limites impostos pelo grid para evitar isso usa-se o border box para ele respeitar o limite imposto*/
 }
 
+/*=========================PAGINATION========================*/
+
+.table-container{
+    display: grid;
+    grid-template: 64px 1fr 16px    / 1fr;/*Rows / Columns*/
+}
+
+.table-container .header{
+    margin: 0;
+    align-self: start;
+}
+.table-container .pagination{
+    margin: 0;
+    align-self: end;
+    justify-self: center;
+}
+
+.pagination a,
+.pagination span{
+    color: var(--selected-item-color-background);
+    text-decoration: none;
+    margin-right: 24px;
+    font-size: 18px;
+}
 
 
+.pagination a:hover{
+    filter: brightness(0.7); 
+    font-weight: 700;
+    border-bottom: 1px solid var(--selected-item-color-background);
+    border-top: 1px solid var(--selected-item-color-background);
+
+}
 
 
 

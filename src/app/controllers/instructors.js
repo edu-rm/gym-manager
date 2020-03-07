@@ -18,6 +18,7 @@ module.exports = {
                     total: Math.ceil(instructors[0].total / limit),
                     page
                 }
+
                 return res.render("instructors/index", {instructors, pagination, filter})
             }
         }
